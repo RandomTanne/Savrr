@@ -8,12 +8,12 @@ export default function YoutubeVideoComponent({video, id}) {
         id: id
     });
 
-    const [style, setStyle] = useState({transform: `translate3d(${video.position.x}px, ${video.position.y}px, 0)`});
+    const [style, setStyle] = useState({transform: `translate3d(${video.position.x}px, ${video.position.y}px, 0)`, position: 'absolute'});
 
     useEffect(() => {
         setStyle(transform ? {
-            transform: `translate3d(${video.position.x + transform.x}px, ${video.position.y + transform.y}px, 0)`,
-        } : {transform: `translate3d(${video.position.x}px, ${video.position.y}px, 0)`})
+            transform: `translate3d(${video.position.x + transform.x}px, ${video.position.y + transform.y}px, 0)`, position: 'absolute',
+        } : {transform: `translate3d(${video.position.x}px, ${video.position.y}px, 0)`, position: 'absolute'})
     }, [transform])
 
     useState(() => {

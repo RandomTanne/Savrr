@@ -6,11 +6,15 @@ export default function IndexPage() {
     const [youtubeVideos, setYoutubeVideos] = useState([{url: "https://www.youtube.com/watch?v=3N5MlZg_Cdg", position: {x: 0, y: 0}}, {url: "https://www.youtube.com/watch?v=YiRMs5ZhcH4", position: {x: 0, y: 0}}]);
 
     function onDragEnd(e) {
-        const youtubeVideo = youtubeVideos[e.active.id - 1];
-        const delta_x = e.delta.x;
-        const delta_y = e.delta.y;
-        youtubeVideo.position.x += (Math.floor(delta_x/350)*350);
-        youtubeVideo.position.y += (Math.floor(delta_y/250)*250);
+        const youtubeVideoIndex = e.active.id - 1;
+        const youtubeVideo = youtubeVideos[youtubeVideoIndex]
+        const newXPos = youtubeVideo.position.x + (Math.round(e.delta.x/320)*320);
+        const newYPos = youtubeVideo.position.y + (Math.round(e.delta.y/200)*200);
+        setYoutubeVideos(
+            youtubeVideos.map((youtubeVideo, i) => {
+                return youtubeVideoIndex == i ? {...youtubeVideo, position: {x: newXPos, y: newYPos}} : youtubeVideo;
+            })
+        )
     }
 
     return (
