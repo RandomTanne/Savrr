@@ -8,13 +8,17 @@ export default function IndexPage() {
     function onDragEnd(e) {
         const youtubeVideoIndex = e.active.id - 1;
         const youtubeVideo = youtubeVideos[youtubeVideoIndex]
+        const occupiedPositions = youtubeVideos.map(youtubeVideo => youtubeVideo.position)
         const newXPos = youtubeVideo.position.x + (Math.round(e.delta.x/320)*320);
         const newYPos = youtubeVideo.position.y + (Math.round(e.delta.y/200)*200);
-        setYoutubeVideos(
-            youtubeVideos.map((youtubeVideo, i) => {
-                return youtubeVideoIndex == i ? {...youtubeVideo, position: {x: newXPos, y: newYPos}} : youtubeVideo;
-            })
-        )
+        const positionFree = !occupiedPositions.map(occupiedPosition => occupiedPosition.x == newXPos && occupiedPosition.y == newYPos).includes(true);
+        if(positionFree && newXPos >= 0 && newYPos >= 0) {
+            setYoutubeVideos(
+                youtubeVideos.map((youtubeVideo, i) => {
+                    return youtubeVideoIndex == i ? {...youtubeVideo, position: {x: newXPos, y: newYPos}} : youtubeVideo;
+                })
+            )
+        }
     }
 
     return (
