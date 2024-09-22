@@ -7,8 +7,10 @@ export default function IndexPage() {
 
     function onDragEnd(e) {
         const youtubeVideo = youtubeVideos[e.active.id - 1];
-        youtubeVideo.position.x += e.delta.x;
-        youtubeVideo.position.y += e.delta.y;
+        const delta_x = e.delta.x;
+        const delta_y = e.delta.y;
+        youtubeVideo.position.x += (Math.floor(delta_x/350)*350);
+        youtubeVideo.position.y += (Math.floor(delta_y/250)*250);
     }
 
     return (
