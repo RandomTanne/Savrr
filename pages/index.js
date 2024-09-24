@@ -31,7 +31,7 @@ export default function IndexPage() {
                     return <YoutubeVideoComponent video={youtubeVideo} id={i + 1} key={i}></YoutubeVideoComponent>
                 })}
             </DndContext>
-            <PlusCircleIcon className="size-16 fixed bottom-0 right-0 text-slate-500"></PlusCircleIcon>
+            <PlusCircleIcon className="size-16 fixed bottom-0 right-0 text-secondary"></PlusCircleIcon>
         </>
     )
 }
